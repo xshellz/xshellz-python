@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "xshellz"
+version = "0.1.0"
+description = "Official Python SDK for xShellz sandboxes - throwaway, gVisor-isolated Linux boxes you can run commands in."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "xShellz" }]
+requires-python = ">=3.10"
+keywords = ["sandbox", "ssh", "gvisor", "remote-execution", "xshellz"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.24",
+    "paramiko>=3.0",
+    "cryptography>=41.0",
+]
+
+[project.urls]
+Homepage = "https://xshellz.com"
+Repository = "https://github.com/xshellz/xshellz-python"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/xshellz"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
