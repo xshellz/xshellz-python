@@ -150,6 +150,19 @@ ruff check .
 pytest
 ```
 
+### Local development (Docker)
+
+No local Python needed — run the full lint + test suite in a container
+(`python:3.12-slim`, pip cache persisted in a named volume):
+
+```bash
+docker compose run --rm test
+```
+
+The repo is mounted at `/work`; the container installs the package with the
+`[dev]` extra, then runs `ruff check .` and `pytest`. Your host `.venv/` is
+masked inside the container, so host and container environments never mix.
+
 ## License
 
 MIT
