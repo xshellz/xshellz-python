@@ -8,8 +8,10 @@ __all__ = [
     "ApiError",
     "AuthError",
     "CommandTimeoutError",
+    "MissingKeyError",
     "QuotaError",
     "SandboxNotRunningError",
+    "UnsupportedLanguageError",
     "XshellzError",
 ]
 
@@ -43,6 +45,22 @@ class SandboxNotRunningError(XshellzError):
 
 class CommandTimeoutError(XshellzError):
     """A command executed with ``run(timeout=...)`` exceeded its deadline."""
+
+
+class MissingKeyError(XshellzError):
+    """``Sandbox.get_or_create()`` found an existing sandbox but no private key.
+
+    The message says where a key was expected (the ``private_key=`` argument or
+    a keystore file). Provide the original key, or ``kill()`` the box and let
+    ``get_or_create()`` recreate it with a fresh keypair.
+    """
+
+
+class UnsupportedLanguageError(XshellzError):
+    """``Sandbox.run_code()`` was called with an unknown language.
+
+    The message lists the supported languages.
+    """
 
 
 class ApiError(XshellzError):

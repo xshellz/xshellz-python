@@ -11,7 +11,7 @@ from .errors import ApiError, AuthError, QuotaError
 
 __all__ = ["ApiClient"]
 
-_USER_AGENT = "xshellz-python/0.1.0"
+_USER_AGENT = "xshellz-python/0.2.0"
 
 # 403 message fragments emitted by the control plane's guard chain. All guards
 # abort(403, message); quota/entitlement are distinguished by message text.
@@ -56,6 +56,9 @@ class ApiClient:
 
     def post(self, path: str, json: Any | None = None) -> Any:
         return self.request("POST", path, json=json)
+
+    def put(self, path: str, json: Any | None = None) -> Any:
+        return self.request("PUT", path, json=json)
 
     def delete(self, path: str) -> Any:
         return self.request("DELETE", path)

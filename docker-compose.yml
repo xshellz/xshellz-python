@@ -7,11 +7,12 @@ services:
       PIP_ROOT_USER_ACTION: ignore
       RUFF_CACHE_DIR: /tmp/ruff-cache
       PYTEST_ADDOPTS: -o cache_dir=/tmp/pytest-cache
+      COVERAGE_FILE: /tmp/coverage/.coverage
     volumes:
       - .:/work
       - /work/.venv
       - pip-cache:/cache/pip
-    command: bash -lc "pip install -e '.[dev]' && ruff check . && pytest"
+    command: bash -lc "mkdir -p /tmp/coverage && pip install -e '.[dev]' && ruff check . && pytest --cov=xshellz --cov-report=term-missing --cov-fail-under=80"
 
 volumes:
   pip-cache:

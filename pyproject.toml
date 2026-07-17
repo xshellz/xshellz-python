@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "xshellz"
-version = "0.1.0"
+version = "0.2.0"
 description = "Official Python SDK for xShellz sandboxes - throwaway, gVisor-isolated Linux boxes you can run commands in."
 readme = "README.md"
 license = { text = "MIT" }
@@ -37,6 +37,7 @@ Repository = "https://github.com/xshellz/xshellz-python"
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
+    "pytest-cov>=5.0",
     "ruff>=0.4",
 ]
 
